@@ -1,0 +1,1 @@
+CREATE DATABASE ledgerpay_test;
