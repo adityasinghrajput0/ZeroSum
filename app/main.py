@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_session
 
-app = FastAPI(title="LedgerPay")
+app = FastAPI(title="ZeroSum")
 
 
 @app.get("/health")

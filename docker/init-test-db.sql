@@ -1,1 +1,1 @@
-CREATE DATABASE ledgerpay_test;
+CREATE DATABASE zerosum_test;
