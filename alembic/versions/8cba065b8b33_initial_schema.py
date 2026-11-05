@@ -1,8 +1,8 @@
 """initial schema
 
-Revision ID: 725c91631306
+Revision ID: 8cba065b8b33
 Revises: 
-Create Date: 2026-11-05 00:48:20.907931
+Create Date: 2026-11-05 23:00:21.347500
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '725c91631306'
+revision: str = '8cba065b8b33'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -55,7 +55,7 @@ def upgrade() -> None:
     sa.Column('currency', sa.String(length=3), nullable=False),
     sa.Column('cached_balance', sa.BigInteger(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.CheckConstraint("(type='USER' AND code is NULL) OR(type='SYSTEM' AND code is NULL)", name=op.f('ck_accounts_ck_accounts_code_match_type')),
+    sa.CheckConstraint("(type = 'USER' AND code IS NULL) OR (type = 'SYSTEM' AND code IS NOT NULL)", name=op.f('ck_accounts_code_match_type')),
     sa.CheckConstraint("(type='USER' AND user_id IS NOT NULL) OR(type='SYSTEM' AND user_id IS NULL)", name=op.f('ck_accounts_ck_accounts_owner_match_type')),
     sa.CheckConstraint("type IN ('USER','SYSTEM')", name=op.f('ck_accounts_ck_accounts_type')),
     sa.CheckConstraint("type='SYSTEM' OR cached_balance>=0", name=op.f('ck_accounts_ck_accounts_balance_nonnegative')),

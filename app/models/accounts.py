@@ -22,9 +22,8 @@ class accounts(Base):
             name="ck_accounts_balance_nonnegative"
         ),
         CheckConstraint(
-            "(type='USER' AND code is NULL) OR"
-            "(type='SYSTEM' AND code is NULL)",
-            name="ck_accounts_code_match_type"
+            "(type = 'USER' AND code IS NULL) OR (type = 'SYSTEM' AND code IS NOT NULL)",
+            name="code_match_type",
         )
     )
     
