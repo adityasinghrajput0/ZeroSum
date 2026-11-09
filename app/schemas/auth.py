@@ -17,11 +17,11 @@ class TokenResponse(BaseModel):
 # return account data as response 
 class AccountOut(BaseModel):
     # read values directly from object's attributes
-    model_config=ConfigDict(form_attributes=True)
+    model_config=ConfigDict(from_attributes=True)
     id:uuid.UUID
     type:str
     currency:str
-    cached_balance:str
+    cached_balance:int
   
 # response generated after successful user registration   
 class RegisterResponse(BaseModel):

@@ -1,13 +1,9 @@
-from fastapi import Depends, FastAPI
-from sqlalchemy import text
-from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi import FastAPI
+from app.api import auth
 
-from app.db.session import get_session
-
-app = FastAPI(title="ZeroSum")
-
+app=FastAPI(title="ZeroSum")
+app.include_router(auth.router, prefix="/api/v1")
 
 @app.get("/health")
-async def health(session: AsyncSession = Depends(get_session)):
-    await session.execute(text("SELECT 1"))
-    return {"status": "ok", "db": "up"}
+async def health():
+    return {"status":"ok"}
