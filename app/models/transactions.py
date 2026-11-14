@@ -5,7 +5,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 from app.models.base import Base
 
-class transactions(Base):
+class Transaction(Base):
     __tablename__="transactions"
     __table_args__=(
         CheckConstraint(
