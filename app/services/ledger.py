@@ -60,11 +60,13 @@ async def post_transaction(
             raise AccountNotFoundError(f"Account {account_id} not found")
     
     txn=Transaction(
-        type=type,
+        type=type,  
         status="COMPLETED",
+        amount=sum(m.amount for m in movements),
         description=description,
         reverse_transaction_id=reverse_transaction_id
     )
+    
     db.add(txn)
     await db.flush()
     

@@ -10,3 +10,6 @@ class UnbalancedEntriesError(LedgerError):
 
 class AccountNotFoundError(LedgerError):
     """An entry points at an account that does not exist."""
+    
+class InsufficientFundsError(LedgerError):
+    """Source account balance is lower than the amount."""
